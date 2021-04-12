@@ -154,10 +154,10 @@ struct tb_event {
 /* Flags passed to tb_init_with() to specify which features should be enabled.
  */
 #define TB_INIT_ALL          -1
-#define TB_INIT_ALTSCREEN     1
-#define TB_INIT_KEYPAD        2
-#define TB_INIT_NO_CURSOR     3
-#define TB_INIT_DETECT_MODE   4
+#define TB_INIT_ALTSCREEN     (1 << 0)
+#define TB_INIT_KEYPAD        (1 << 1)
+#define TB_INIT_NO_CURSOR     (1 << 2)
+#define TB_INIT_DETECT_MODE   (1 << 3)
 
 /* Initializes the termbox library. This function should be called before any
  * other functions. Function tb_init is same as tb_init_file("/dev/tty").
