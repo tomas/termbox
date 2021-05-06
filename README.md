@@ -113,3 +113,4 @@ For more information, take a look at [the demos](https://github.com/tomas/termbo
 ## License
 
 MIT.
+
