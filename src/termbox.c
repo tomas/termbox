@@ -858,7 +858,7 @@ static int decode_esc(struct tb_event * event) {
     }
   }
 
-  if (nread == MAXSEQ) return 0;
+  if (nread == MAXSEQ-1) return 0;
   seq[nread] = '\0';
 
   int mouse_parsed = parse_mouse_event(event, seq, nread-1);
