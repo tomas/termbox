@@ -320,13 +320,12 @@ void tb_char(int x, int y, tb_color fg, tb_color bg, tb_chr ch) {
 
 int tb_string_with_limit(int x, int y, tb_color fg, tb_color bg, const char *str, int limit) {
   tb_chr uni;
-  int w, c = 0, l = 0;
+  int w, l = 0;
 
   while (*str && l < limit) {
     str += tb_utf8_char_to_unicode(&uni, str);
     tb_char(x, y, fg, bg, uni);
     w = tb_unicode_is_char_wide(uni) ? 2 : 1;
-    c++;
     x++;
     l = l + w;
   }
