@@ -121,6 +121,9 @@ static int parse_mouse_event(struct tb_event *event, const char *buf, int len) {
 
     event->type = TB_EVENT_MOUSE; // TB_EVENT_KEY by default
     if ((b & 32) != 0) event->meta |= TB_META_MOTION;
+    if ((b & 16) != 0) event->meta |= TB_META_CTRL;
+    if ((b & 8)  != 0) event->meta |= TB_META_ALT;
+    if ((b & 4)  != 0) event->meta |= TB_META_SHIFT;
 
     // the coord is 1,1 for upper left
     event->x = (uint8_t)buf[4] - 1 - 32;
@@ -214,6 +217,9 @@ static int parse_mouse_event(struct tb_event *event, const char *buf, int len) {
 
     event->type = TB_EVENT_MOUSE;
     if ((n1 & 32) != 0) event->meta |= TB_META_MOTION;
+    if ((n1 & 16) != 0) event->meta |= TB_META_CTRL;
+    if ((n1 & 8)  != 0) event->meta |= TB_META_ALT;
+    if ((n1 & 4)  != 0) event->meta |= TB_META_SHIFT;
 
     event->x = (uint8_t)n2 - 1;
     event->y = (uint8_t)n3 - 1;
@@ -400,12 +406,12 @@ static int parse_esc_seq(struct tb_event *event, const char *seq, int len) {
       case 127:
         event->key = TB_KEY_BACKSPACE; break;
       default:
-            if (seq[1] < 27) { // ctrl+alt+char
-              event->ch  = seq[1] + 96;
-              event->key = seq[1];
-            } else {
-            event->ch  = seq[1]; break;
-            }
+        if (seq[1] < 27) { // ctrl+alt+char
+          event->ch  = seq[1] + 96;
+          event->key = seq[1];
+        } else {
+          event->ch  = seq[1]; break;
+        }
     }
 
     return 1;
@@ -497,7 +503,7 @@ static int parse_esc_seq(struct tb_event *event, const char *seq, int len) {
 
     default:
       printf("Unknown: %d\n", seq[1]);
-          return -1;
+      return -1;
   }
 
   return 1;
