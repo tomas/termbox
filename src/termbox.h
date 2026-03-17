@@ -122,6 +122,7 @@ struct tb_cell {
 #define TB_EVENT_KEY    1
 #define TB_EVENT_RESIZE 2
 #define TB_EVENT_MOUSE  3
+#define TB_EVENT_FOCUS  4
 
 /* An event, single interaction from the user. The 'mod' and 'ch' fields are
  * valid if 'type' is TB_EVENT_KEY. The 'w' and 'h' fields are valid if 'type'
@@ -244,6 +245,9 @@ SO_IMPORT void tb_show_cursor(void);
 
 SO_IMPORT void tb_enable_mouse(void);
 SO_IMPORT void tb_disable_mouse(void);
+
+SO_IMPORT void tb_enable_focus_tracking(void);
+SO_IMPORT void tb_disable_focus_tracking(void);
 
 /* Wait for an event up to 'timeout' milliseconds and fill the 'event'
  * structure with it, when the event is available. Returns the type of the

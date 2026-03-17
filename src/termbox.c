@@ -392,6 +392,16 @@ void tb_disable_mouse(void) {
   bytebuffer_flush(&output_buffer, inout);
 }
 
+void tb_enable_focus_tracking(void) {
+  bytebuffer_puts(&output_buffer, "\x1b[?1004h");
+  bytebuffer_flush(&output_buffer, inout);
+}
+
+void tb_disable_focus_tracking(void) {
+  bytebuffer_puts(&output_buffer, "\x1b[?1004l");
+  bytebuffer_flush(&output_buffer, inout);
+}
+
 int tb_select_output_mode(int mode) {
   if (mode) output_mode = mode;
   return output_mode;

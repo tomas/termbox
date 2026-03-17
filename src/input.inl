@@ -248,6 +248,11 @@ static int parse_bracket_esc(struct tb_event *event, const char *seq, int len) {
       event->meta = TB_META_SHIFT;
       event->key  = TB_KEY_TAB;
 
+    } else if (last == 'I' || last == 'O') { // focus in/out
+
+      event->type = TB_EVENT_FOCUS;
+      event->key = last == 'I' ? 1 : 0;
+
 // not needed.
 //    } else if ('A' <= last && last <= 'H') { // arrow keys linux and xterm
 //      event->key = 0xFFFF + (last - 86);
