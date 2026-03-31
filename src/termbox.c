@@ -800,7 +800,7 @@ static void sigwinch_handler(int xxx) {
 }
 
 static int cutesc = 0;
-#define MAXSEQ 14 // need to make room for urxvt mouse sequences
+#define MAXSEQ 15 // need to make room for urxvt mouse sequences (over row 100)
 static char seq[MAXSEQ];
 
 static int decode_char(struct tb_event * event, uint32_t ch) {
