@@ -194,6 +194,7 @@ SO_IMPORT void tb_clear_screen(void);
 SO_IMPORT void tb_render(void);
 
 SO_IMPORT tb_color tb_rgb(uint32_t in);
+SO_IMPORT tb_color tb_rgb_from_xterm(uint8_t in);
 
 /* Sets the position of the cursor. Upper-left character is (0, 0). If you pass
  * TB_HIDE_CURSOR as both coordinates, then the cursor will be hidden. Cursor

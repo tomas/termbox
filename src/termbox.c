@@ -522,7 +522,7 @@ static uint8_t base_colors[8][3] = {
 // int levels = { 0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff };
 static int steps[6] = { 47, 115, 155, 195, 235, 256 }; // in between of each level
 
-uint8_t get_256_color(uint32_t color) {
+static uint8_t get_256_color(uint32_t color) {
   // extract rgb values from number (e.g. 0xffcc00 -> 16763904)
   uint8_t rgb[3] = { 0, 0, 0 }; // r, g, b
   rgb[0] = (color >> 16) & 0xFF; // e.g. 255
@@ -544,8 +544,7 @@ uint8_t get_256_color(uint32_t color) {
   return 16 + (nums[0] * 36) + (nums[1] * 6) + nums[2];
 }
 
-uint8_t get_base_color(uint32_t color) {
-
+static uint8_t get_base_color(uint32_t color) {
   // extract rgb values and round them to either 0 or 1
   uint8_t rgb[3] = { 0, 0, 0 }; // r, g, b
   rgb[0] = ((color >> 16) & 0xFF) > 128 ? 1 : 0;
@@ -573,6 +572,12 @@ tb_color tb_rgb(uint32_t in) {
   } else {
     return get_base_color(in);
   }
+}
+
+#include "xterm_colors.inl"
+
+tb_color tb_rgb_from_xterm(uint8_t number) {
+  return tb_rgb(xterm_colors[number]);
 }
 
 static int convertnum(uint8_t num, char* buf) {
