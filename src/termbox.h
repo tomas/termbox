@@ -370,7 +370,8 @@ SO_IMPORT int tb_unicode_is_char_wide(uint32_t c);
 #define TB_KEY_TAB              0x09
 #define TB_KEY_CTRL_H           0x7F /* clash with 'CTRL_BACKSPACE' */
 #define TB_KEY_CTRL_I           0x09 /* clash with 'TAB' */
-#define TB_KEY_CTRL_J           0x0A
+#define TB_KEY_CTRL_J           0x0A /* clash with 'SHIFT_ENTER' */
+#define TB_KEY_SHIFT_ENTER      0x0A /* clash with 'SHIFT_ENTER' */
 #define TB_KEY_CTRL_K           0x0B
 #define TB_KEY_CTRL_L           0x0C
 #define TB_KEY_ENTER            0x0D
